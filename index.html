@@ -1,13 +1,79 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>桃月はぐボタン</title>
+<style>
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:24px 12px 60px;
+  }
+  h1{ margin: 10px 0 18px; font-size: 26px; }
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap:12px;
+    max-width:720px;
+    margin:0 auto;
+  }
+  button{
+    font-size:18px;
+    padding:16px 12px;
+    border-radius:14px;
+    border:none;
+    cursor:pointer;
+    background:#2a2a2a;
+    color:#fff;
+  }
+  button:active{ transform: translateY(1px); }
+  .note{
+    max-width:720px;
+    margin:22px auto 0;
+    font-size:12px;
+    color:#cfcfcf;
+    line-height:1.6;
+    opacity:0.9;
+  }
+  a{ color:#cfcfcf; }
+</style>
 </head>
 <body>
 
-<h1>桃月はぐボタン（準備中）</h1>
-<p>ここに音声ボタンが並びます。</p>
+<h1>桃月はぐボタン</h1>
+
+<div class="grid">
+  <button onclick="play('プリっとうんこの歌')">プリっとうんこの歌</button>
+</div>
+
+<div class="note">
+  <hr style="border:none;border-top:1px solid #333;margin:18px 0;">
+  <div>
+    本サイトの音声素材は、許諾を得たうえで掲載しています。<br>
+    常識の範囲内でお楽しみください。<br><br>
+    ・転載は禁止、再配布は禁止です<br>
+    ・誹謗中傷や迷惑行為、用途外利用はおやめください<br>
+    ・本サイトは非公式のファンコンテンツです
+  </div>
+</div>
+
+<script>
+let currentAudio = null;
+
+function play(name){
+  // 連打で重ならないように、前の音を止める
+  if(currentAudio){
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  currentAudio = new Audio(`audio/${name}.mp3`);
+  currentAudio.play();
+}
+</script>
 
 </body>
 </html>
